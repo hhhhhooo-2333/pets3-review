@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#163a34" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PETS3复习舱" />
+  <title>PETS3 复习舱</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="extras.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">P3</span><div><strong>PETS3 复习舱</strong><small>每天进步一点点</small></div></div>
+      <nav>
+        <button class="nav active" data-view="home">⌂ <span>学习首页</span></button>
+        <button class="nav" data-view="review">▣ <span>单词复习</span></button>
+        <button class="nav" data-view="quiz">✓ <span>单词测试</span></button>
+        <button class="nav" data-view="practice">✎ <span>真题练习</span></button>
+        <button class="nav" data-view="listening">♫ <span>听力训练</span></button>
+        <button class="nav" data-view="tips">◆ <span>学习技巧</span></button>
+        <button class="nav" data-view="book">☆ <span>错词本</span></button>
+      </nav>
+      <div class="side-tip"><b>考试小贴士</b><p>先保证词汇识别速度，再进入长篇阅读。稳定的日积累比临时突击更有效。</p></div>
+    </aside>
+
+    <main>
+      <header><button id="menuBtn" class="icon-btn menu">☰</button><div><p id="today"></p><h1 id="pageTitle">学习首页</h1></div><div class="streak"><span>🔥</span><div><b id="streakDays">1 天</b><small>连续学习</small></div></div></header>
+
+      <section class="view active" id="homeView">
+        <div class="hero"><div><span class="eyebrow">TODAY'S MISSION</span><h2>把今天的 30 个单词<br>变成明天的底气。</h2><p>基于你的 1110 词专属词库，按掌握程度自动安排复习。</p><button class="primary" data-go="review">开始今日复习 →</button></div><div class="hero-art"><span>A</span><span>词</span><span>✓</span></div></div>
+        <div class="stats">
+          <article><div class="stat-icon green">✓</div><div><small>已掌握</small><strong id="masteredStat">0</strong><em>个单词</em></div></article>
+          <article><div class="stat-icon orange">↻</div><div><small>待复习</small><strong id="dueStat">30</strong><em>今日任务</em></div></article>
+          <article><div class="stat-icon blue">◎</div><div><small>测试正确率</small><strong id="accuracyStat">—</strong><em>累计结果</em></div></article>
+        </div>
+        <div class="grid-2">
+          <article class="panel"><div class="panel-head"><div><span class="eyebrow">LEARNING MAP</span><h3>词库进度</h3></div><b id="progressText">0 / 1110</b></div><div class="progress"><i id="progressBar"></i></div><div class="legend"><span><i class="dot mastered"></i>已掌握</span><span><i class="dot learning"></i>学习中</span><span><i class="dot new"></i>未学习</span></div></article>
+          <article class="panel"><div class="panel-head"><div><span class="eyebrow">QUICK START</span><h3>专项练习</h3></div></div><div class="quick"><button data-go="quiz" data-mode="choice"><span>ABCD</span><b>英译中</b><small>四选一快速识别</small></button><button data-go="quiz" data-mode="spell"><span>⌨</span><b>拼写挑战</b><small>根据中文写单词</small></button><button data-go="practice"><span>¶</span><b>阅读练习</b><small>PETS3 题型训练</small></button></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="reviewView">
+        <div class="section-title"><div><span class="eyebrow">FLASH CARDS</span><h2>单词复习</h2><p>点击卡片查看释义，按掌握程度安排下一次复习。</p></div><div class="session-count"><b id="reviewCount">1</b><span>/ 30</span></div></div>
+        <div class="review-layout">
+          <div class="flashcard" id="flashcard"><div class="card-front"><button class="sound" id="soundBtn">🔊</button><span class="word-no" id="wordNo">WORD 001</span><h2 id="cardWord">abandon</h2><p id="cardPhonetic">/əˈbændən/</p><small>点击卡片显示释义</small></div><div class="card-back"><span>中文释义</span><h3 id="cardMeaning">v. 放弃</h3><p id="memoryTip">试着用这个词说一个短句。</p></div></div>
+          <div class="card-actions"><button class="again" data-rate="again">忘记了 <small>很快再看</small></button><button class="hard" data-rate="hard">有点模糊 <small>明天复习</small></button><button class="easy" data-rate="easy">记住了 <small>7天后复习</small></button></div>
+        </div>
+      </section>
+
+      <section class="view" id="quizView">
+        <div class="section-title"><div><span class="eyebrow">VOCABULARY QUIZ</span><h2>单词测试</h2><p>每组 10 题，即时反馈并自动收录错词。</p></div><div class="tabs"><button class="tab active" data-quizmode="choice">英译中</button><button class="tab" data-quizmode="spell">拼写</button></div></div>
+        <div class="quiz-card"><div class="quiz-top"><span id="quizProgress">第 1 / 10 题</span><b id="quizScore">得分 0</b></div><div class="mini-progress"><i id="quizBar"></i></div><div id="quizBody"></div></div>
+      </section>
+
+      <section class="view" id="practiceView">
+        <div class="section-title"><div><span class="eyebrow">PAST PAPERS</span><h2>历年真题</h2><p>共 13 套试卷。选择年份后可在页面中查看原卷，并打开对应答案解析。</p></div></div>
+        <div class="paper-layout"><div class="paper-list" id="paperList"></div><div class="paper-viewer"><div class="viewer-head"><div><b id="paperTitle">请选择一套试卷</b><small id="paperMeta">原版 PDF</small></div><div><a class="secondary" id="answerLink" target="_blank">答案解析</a><a class="primary link-btn" id="paperLink" target="_blank">新窗口打开</a></div></div><iframe id="paperFrame" title="真题试卷"></iframe></div></div>
+      </section>
+
+      <section class="view" id="listeningView">
+        <div class="section-title"><div><span class="eyebrow">LISTENING LAB</span><h2>听力训练</h2><p>10 套历年听力独立训练。建议按“盲听 → 对题 → 精听 → 跟读”完成一轮。</p></div><div class="listening-badge">🎧 <b>10</b> 套音频</div></div>
+        <div class="listen-layout"><div class="track-list" id="trackList"></div><div class="player-card"><span class="eyebrow">NOW PLAYING</span><h3 id="trackTitle">选择一套听力</h3><p id="trackHint">音频和对应试卷均已保存在本软件中，可离线播放。</p><audio id="audioPlayer" controls preload="metadata"></audio><div class="listen-steps"><article><b>01 盲听</b><p>不看原文完成题目，记录没听懂的位置。</p></article><article><b>02 精听</b><p>重复关键句，抓连读、弱读和信号词。</p></article><article><b>03 跟读</b><p>延迟半拍模仿语音语调，复述核心信息。</p></article></div><a class="secondary listen-paper-link" id="openListeningPaper" target="_blank">请先选择一套听力</a></div></div>
+      </section>
+
+      <section class="view" id="tipsView">
+        <div class="section-title"><div><span class="eyebrow">KNOWLEDGE NOTES</span><h2>学习技巧与知识点</h2><p>集中记录常用搭配、语法、阅读信号词和答题方法，可自行补充。</p></div><button class="primary" id="addTip">＋ 新增知识点</button></div>
+        <div class="tip-toolbar"><div class="tip-cats" id="tipCats"></div><input id="tipSearch" placeholder="搜索知识点…"></div><div class="tip-grid" id="tipGrid"></div>
+      </section>
+
+      <section class="view" id="bookView">
+        <div class="section-title"><div><span class="eyebrow">REVIEW NOTEBOOK</span><h2>错词本</h2><p>做错或标记“忘记了”的单词会自动出现在这里。</p></div><button class="secondary" id="clearBook">清空错词</button></div>
+        <div class="book-tools"><input id="searchInput" placeholder="搜索单词或中文释义…" /><span id="bookCount">0 个错词</span></div><div class="word-list" id="wordList"></div>
+      </section>
+      <footer style="margin-top:48px;padding:18px;text-align:center;border-top:1px solid #e5e5dc;color:#73817e;font-size:11px;line-height:1.7">本项目仅供个人英语学习与考试复习使用，与 PETS 官方机构无关。试卷及音频资料的权利归原权利人所有，请勿用于商业用途或公开传播。</footer>
+    </main>
+  </div>
+  <dialog id="tipDialog"><form method="dialog"><div class="dialog-head"><h3>新增知识点</h3><button value="cancel">×</button></div><label>分类<select id="newTipCat"><option>词汇搭配</option><option>语法</option><option>阅读</option><option>听力</option><option>写作</option><option>考试策略</option></select></label><label>标题<input id="newTipTitle" placeholder="例如：表示转折的信号词"></label><label>内容<textarea id="newTipContent" rows="5" placeholder="记录规则、例句或容易出错的地方"></textarea></label><button class="primary" id="saveTip" value="default">保存知识点</button></form></dialog>
+  <div class="toast" id="toast"></div>
+  <script src="words.js"></script><script src="app.js"></script>
+</body>
+</html>

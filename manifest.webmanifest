@@ -1,0 +1,13 @@
+{
+  "name": "PETS3 复习舱",
+  "short_name": "PETS3复习",
+  "description": "PETS3 单词、历年真题、听力和知识点复习软件",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ef",
+  "theme_color": "#163a34",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
