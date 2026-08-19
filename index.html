@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" href="icon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="extras.css" />
+  <link rel="stylesheet" href="records.css" />
 </head>
 <body>
   <div class="shell">
@@ -36,7 +37,8 @@
       <section class="view active" id="homeView">
         <div class="hero"><div><span class="eyebrow">TODAY'S MISSION</span><h2>把今天的 30 个单词<br>变成明天的底气。</h2><p>基于你的 1110 词专属词库，按掌握程度自动安排复习。</p><button class="primary" data-go="review">开始今日复习 →</button></div><div class="hero-art"><span>A</span><span>词</span><span>✓</span></div></div>
         <div class="stats">
-          <article><div class="stat-icon green">✓</div><div><small>已掌握</small><strong id="masteredStat">0</strong><em>个单词</em></div></article>
+          <article class="stat-link" data-wordgroup="mastered" role="button" tabindex="0"><div class="stat-icon green">✓</div><div><small>已掌握</small><strong id="masteredStat">0</strong><em>点击查看明细 →</em></div></article>
+          <article class="stat-link" data-wordgroup="learning" role="button" tabindex="0"><div class="stat-icon orange">◔</div><div><small>已复习但未掌握</small><strong id="learningStat">0</strong><em>点击查看明细 →</em></div></article>
           <article><div class="stat-icon orange">↻</div><div><small>待复习</small><strong id="dueStat">30</strong><em>今日任务</em></div></article>
           <article><div class="stat-icon blue">◎</div><div><small>测试正确率</small><strong id="accuracyStat">—</strong><em>累计结果</em></div></article>
         </div>
@@ -81,6 +83,8 @@
       <footer style="margin-top:48px;padding:18px;text-align:center;border-top:1px solid #e5e5dc;color:#73817e;font-size:11px;line-height:1.7">本项目仅供个人英语学习与考试复习使用，与 PETS 官方机构无关。试卷及音频资料的权利归原权利人所有，请勿用于商业用途或公开传播。</footer>
     </main>
   </div>
+  <dialog id="wordLedgerDialog" class="wide-dialog"><div class="record-dialog"><div class="dialog-head"><div><span class="eyebrow">LEARNING RECORDS</span><h3 id="ledgerTitle">学习记录</h3></div><button class="dialog-close" data-close="wordLedgerDialog">×</button></div><div class="record-tools"><input id="ledgerSearch" placeholder="搜索单词或中文释义…"><span id="ledgerCount"></span></div><div class="record-list" id="ledgerList"></div></div></dialog>
+  <dialog id="wordDetailDialog"><div class="word-detail"><button class="detail-close" data-close="wordDetailDialog">×</button><span class="eyebrow" id="detailStatus">WORD DETAIL</span><h2 id="detailWord"></h2><p id="detailPhonetic"></p><div class="detail-meaning" id="detailMeaning"></div><button class="primary" id="detailSpeak">🔊 播放发音</button></div></dialog>
   <dialog id="tipDialog"><form method="dialog"><div class="dialog-head"><h3>新增知识点</h3><button value="cancel">×</button></div><label>分类<select id="newTipCat"><option>词汇搭配</option><option>语法</option><option>阅读</option><option>听力</option><option>写作</option><option>考试策略</option></select></label><label>标题<input id="newTipTitle" placeholder="例如：表示转折的信号词"></label><label>内容<textarea id="newTipContent" rows="5" placeholder="记录规则、例句或容易出错的地方"></textarea></label><button class="primary" id="saveTip" value="default">保存知识点</button></form></dialog>
   <div class="toast" id="toast"></div>
   <script src="words.js"></script><script src="app.js"></script>
